@@ -1,3 +1,44 @@
+@import "variables";
+@import "mixins";
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  font-family: $font-style;
+  font-size: $font-size;
+}
+
+@import "wrapper";
+
+.calendar {
+
+  div {
+    display: none;
+  }
+
+  @for $i from 28 through 31 {
+    &-#{$i} div:nth-child(-n + #{$i}) {
+      @include cell;
+    }
+  }
+
+  @for $i from 1 to 31 {
+    div:nth-child(#{$i})::after {
+      content: "#{$i}";
+    }
+  }
+
+  @for $i from 1 to 6 {
+    &-#{nth($days, $i)} div:first-child {
+      margin-left: #{$i * $width-cell + $i + 1};
+    }
+  }
+
+  div:hover {
+    background-color: $bg-color-hover;
+    transform: translateY(-20px);
+  }
 }

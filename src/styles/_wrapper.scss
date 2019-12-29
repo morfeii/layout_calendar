@@ -1,0 +1,5 @@
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  width: $width-cell*7 + $margin*7;
+}
